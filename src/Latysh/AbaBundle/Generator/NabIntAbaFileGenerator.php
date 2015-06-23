@@ -48,7 +48,7 @@ class NabIntAbaFileGenerator {
             $paymentRecord->setNumberOfDetailRecords(count($paymentRecord->getPaymentDetailRecords()));
             //calculate sum of payment amount
             foreach ($paymentRecord->getPaymentDetailRecords() as $paymentDetailRecord) {
-                $paymentRecord->setPaymentAmount($paymentRecord->getPaymentAmount()+$paymentDetailRecord->getPaymentLegAmount());
+                $paymentRecord->setPaymentAmount($paymentRecord->getPaymentAmount() + $paymentDetailRecord->getPaymentLegAmount());
             }
 
             // Payment record validation
@@ -138,7 +138,7 @@ class NabIntAbaFileGenerator {
         $line .= $paymentRecord->getPayCurrencyCode();
 
         // Payment amount
-        $line .= str_pad($paymentRecord->getPaymentAmount(), 15, '0', STR_PAD_LEFT);
+        $line .= str_pad($this->getAmountFormatted($paymentRecord->getPayCurrencyCode(), $paymentRecord->getPaymentAmount()), 15, '0', STR_PAD_LEFT);
 
         // Value date
         $line .= $paymentRecord->getValueDate()->format('dmY');
@@ -249,7 +249,7 @@ class NabIntAbaFileGenerator {
         $line .= $paymentDetailRecord->getPaymentLegCurrencyCode();
 
         // Payment Leg Currency Amount
-        $line .= str_pad($paymentDetailRecord->getPaymentLegAmount(), 15, '0', STR_PAD_LEFT);
+        $line .= str_pad($this->getAmountFormatted($paymentDetailRecord->getPaymentLegCurrencyCode(), $paymentDetailRecord->getPaymentLegAmount()), 15, '0', STR_PAD_LEFT);
 
         // FX Rate
         $line .= str_pad($paymentDetailRecord->getFxRate(), 11, '0', STR_PAD_LEFT);
@@ -264,7 +264,7 @@ class NabIntAbaFileGenerator {
         $line .= $paymentDetailRecord->getDebitCurrencyCode();
 
         // Debit Amount
-        $line .= str_pad($paymentDetailRecord->getDebitAmount(), 15, '0', STR_PAD_LEFT);
+        $line .= str_pad($this->getAmountFormatted($paymentDetailRecord->getDebitCurrencyCode(), $paymentDetailRecord->getDebitAmount()), 15, '0', STR_PAD_LEFT);
 
         // Refinance Indicator
         $line .= $paymentDetailRecord->getRefinanceIndicator();
@@ -325,5 +325,28 @@ class NabIntAbaFileGenerator {
 
     private function addLine($line, $crlf = true) {
         $this->abaString .= $line . ($crlf ? "\r\n" : "");
+    }
+
+    /**
+     * Number scale (decimal point) value depending on currency. Refer to documentation.
+     * @param string $currency
+     * @param float $amount
+     *
+     * @return string $format
+     */
+    private function getAmountFormatted($currency, $amount) {
+        if (in_array($currency, ['BHD', 'JOD', 'KWD', 'OMR'])) {
+            $format = number_format($amount, 3, '.', '');
+        } else if (in_array($currency, ['IDR', 'JPY', 'KWD', 'OMR'])) {
+            $format = number_format($amount, 0, '.', '');
+        } else {
+            if (is_numeric($amount) && floor($amount) != $amount) { // if number if not decimal we put it as it is
+                $format = number_format($amount, 2, '.', '');
+            } else {
+                $format = $amount;
+            }
+        }
+
+        return $format;
     }
 }
