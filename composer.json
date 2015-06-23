@@ -8,7 +8,7 @@
             "email":"altynbek.usenov@gmailc.om"
         }
     ],
-    "keywords":["ABA file symfony", "ABA, Payment file", "International ABA file", "NAB aba file", "aba"],
+    "keywords":["ABA file symfony", "ABA", "Payment file", "International ABA file", "NAB aba file", "aba"],
     "license":[
         "MIT"
     ],
@@ -23,7 +23,7 @@
     "target-dir":"Latysh/AbaBundle",
     "extra":{
         "branch-alias":{
-            "dev-master":"dev-master"
+            "dev-master":"0.1-dev"
         }
     }
 }
