@@ -1,0 +1,7 @@
+services:
+    latysh_aba_file_generator:
+        class: Latysh\AbaBundle\Generator\AbaFileGenerator
+        arguments: ["@validator"]
+    latysh_nab_aba_file_generator:
+            class: Latysh\AbaBundle\Generator\NabIntAbaFileGenerator
+            arguments: ["@validator"]
