@@ -1,5 +1,5 @@
 {
-    "name":"latysh/aba-bundle",
+    "name":"latysh/aba",
     "description":"ABA file creation for Symfony2 framework",
     "type":"symfony-bundle",
     "authors":[
@@ -8,9 +8,7 @@
             "email":"altynbek.usenov@gmailc.om"
         }
     ],
-    "keywords":[
-        "ABA file symfony, ABA, Payment file, International ABA file, NAB aba file, aba"
-    ],
+    "keywords":["ABA file symfony", "ABA, Payment file", "International ABA file", "NAB aba file", "aba"],
     "license":[
         "MIT"
     ],
