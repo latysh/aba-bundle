@@ -204,13 +204,13 @@ class NabIntAbaFileGenerator {
         $line .= str_pad($paymentRecord->getAdditionalInstructionsToNab(), 275, ' ', STR_PAD_RIGHT);
 
         // Beneficiary bank country code
-        $line .= $paymentRecord->getBeneficiaryBankCountryCode();
+        $line .= str_pad($paymentRecord->getBeneficiaryBankCountryCode(), 2, ' ', STR_PAD_RIGHT);
 
         // Beneficiary BIC Address (ie bank SWIFT Code)
         $line .= str_pad($paymentRecord->getBeneficiaryBicAddress(), 11, ' ', STR_PAD_RIGHT);
 
         // Routing type
-        $line .= $paymentRecord->getRoutingType();
+        $line .= str_pad($paymentRecord->getRoutingType(), 2, ' ', STR_PAD_RIGHT);
 
         // Routing code
         $line .= str_pad($paymentRecord->getRoutingCode(), 20, ' ', STR_PAD_RIGHT);

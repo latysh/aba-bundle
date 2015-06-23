@@ -120,7 +120,6 @@ class PaymentRecord {
     /**
      * @var string $beneficiaryBankName
      *
-     * @Assert\NotBlank()
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
      *     message = "Payment record beneficiary bank name is invalid: {{ value }}. Must be up to 35 characters, including special characters(+-/'?.,())."
