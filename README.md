@@ -1,4 +1,4 @@
-ABA PAYMENT FILE GENERATION FOR SYMFONY2!
+Aba payment file generation for Symfony2!
 ===================
 
 Overview
@@ -228,6 +228,8 @@ For NAB International payment file
     }
 
 ```
+
+Enjoy! :smile:
 
 References
 ============
