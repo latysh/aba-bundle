@@ -229,7 +229,7 @@ For NAB International payment file
     }
 
 ```
-or you can put in your file by 
+or you can use file_put_contents instead of streaming file contents
 
 ```php
 file_put_contents('/my/aba/file.aba', $abaString);
