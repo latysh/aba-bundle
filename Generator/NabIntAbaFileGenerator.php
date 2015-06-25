@@ -186,7 +186,7 @@ class NabIntAbaFileGenerator {
         $line .= str_pad($paymentRecord->getRefinanceDays(), 3, ' ', STR_PAD_RIGHT);
 
         // Refinance date
-        $line .= $paymentRecord->getRefinanceDate()->format('dmY');
+        $line .= ($paymentRecord->getRefinanceDate())? $paymentRecord->getRefinanceDate()->format('dmY'): str_repeat(' ', 8);
 
         // Additional Instructions to Beneficiary Line 1
         $line .= str_pad($paymentRecord->getAdditionalBeneficiaryInstructions1(), 35, ' ', STR_PAD_RIGHT);

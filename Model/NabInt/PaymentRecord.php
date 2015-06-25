@@ -213,7 +213,6 @@ class PaymentRecord {
     /**
      * @var \DateTime $refinanceDate
      *
-     * @Assert\NotBlank()
      * @Assert\DateTime()
      */
     private $refinanceDate;
