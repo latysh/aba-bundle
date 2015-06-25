@@ -1,4 +1,4 @@
-Aba file generation for Symfony2!
+Aba file generation for Symfony2
 ===================
 
 Overview
