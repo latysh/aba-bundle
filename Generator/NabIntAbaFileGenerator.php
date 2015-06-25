@@ -264,7 +264,8 @@ class NabIntAbaFileGenerator {
         $line .= $paymentDetailRecord->getDebitCurrencyCode();
 
         // Debit Amount
-        $line .= str_pad($this->getAmountFormatted($paymentDetailRecord->getDebitCurrencyCode(), $paymentDetailRecord->getDebitAmount()), 15, '0', STR_PAD_LEFT);
+        $debit_amount = ($this->getAmountFormatted($paymentDetailRecord->getDebitCurrencyCode(), $paymentDetailRecord->getDebitAmount()) == 0) ? str_pad($this->getAmountFormatted($paymentDetailRecord->getDebitCurrencyCode(), $paymentDetailRecord->getDebitAmount()), 15, ' ', STR_PAD_LEFT) : str_pad($this->getAmountFormatted($paymentDetailRecord->getDebitCurrencyCode(), $paymentDetailRecord->getDebitAmount()), 15, '0', STR_PAD_LEFT);
+        $line .= $debit_amount;
 
         // Refinance Indicator
         $line .= $paymentDetailRecord->getRefinanceIndicator();

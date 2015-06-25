@@ -75,7 +75,7 @@ class DetailRecord implements TransactionInterface {
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *     pattern = "/^[A-Za-z0-9\s+]{0,32}$/",
+     *     pattern = "/^[\w\s\_?\^\[\],.+-;:=#\/\*\(\)&%!\$@]{0,32}$/",
      *     message = "Detail record account name is invalid: {{ value }}. Must be letters only and up to 32 characters long."
      * )
      */
@@ -86,7 +86,7 @@ class DetailRecord implements TransactionInterface {
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *     pattern = "/^[A-Za-z0-9\s+]{0,18}$/",
+     *     pattern = "/^[\w\s\_?\^\[\],.+-;:=#\/\*\(\)&%!\$@]{0,18}$/",
      *     message = "Detail record reference is invalid: {{ value }}. Must be letters only and up to 18 characters long."
      * )
      */
@@ -96,7 +96,7 @@ class DetailRecord implements TransactionInterface {
      * @var string $remitter
      *
      * @Assert\Regex(
-     *     pattern = "/^[A-Za-z0-9\s+]{0,16}$/",
+     *     pattern = "/^[\w\s\_?\^\[\],.+-;:=#\/\*\(\)&%!\$@]{0,16}$/",
      *     message = "Detail record reference is invalid: {{ value }}. Must be letters only and up to 16 characters long."
      * )
      */

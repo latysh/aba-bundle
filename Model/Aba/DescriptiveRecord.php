@@ -65,7 +65,7 @@ class DescriptiveRecord {
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *     pattern = "/^[A-Za-z\s+]{0,26}$/",
+     *     pattern = "/^[\w\s\_?\^\[\],.+-;:=#\/\*\(\)&%!\$@]{0,26}$/",
      *     message = "Descriptive record user name is invalid: {{ value }}. Must be letters only and up to 26 characters long."
      * )
      */
@@ -85,7 +85,7 @@ class DescriptiveRecord {
      * @var string $bankName
      *
      * @Assert\Regex(
-     *     pattern = "/^[A-Za-z\s]{0,12}$/",
+     *     pattern = "/^[\w\s\_?\^\[\],.+-;:=#\/\*\(\)&%!\$@]{0,12}$/",
      *     message = "Descriptive record description is invalid: {{ value }}. Must be letters only and up to 12 characters long."
      * )
      */
