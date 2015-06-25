@@ -37,14 +37,14 @@ class NabIntAbaFileGenerator {
         // Header Record
         $this->addHeaderRecord($headerRecord);
 
-        // Payment header
-        $this->addPaymentHeader($paymentHeader);
-
         if (!is_array($paymentRecords)) {
             $paymentRecords = array($paymentRecords);
         }
 
         foreach ($paymentRecords as $paymentRecord) {
+            // Payment header
+            $this->addPaymentHeader($paymentHeader);
+            
             $paymentRecord->setNumberOfDetailRecords(count($paymentRecord->getPaymentDetailRecords()));
             //calculate sum of payment amount
             foreach ($paymentRecord->getPaymentDetailRecords() as $paymentDetailRecord) {
