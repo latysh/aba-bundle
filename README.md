@@ -4,7 +4,8 @@ Aba payment file generation for Symfony2!
 Overview
 -------------
 
-This bundle was inspired from https://github.com/simonblee/aba-file-generator Generates an aba file for bulk banking transactions with Australian banks and NAB international payment file
+This bundle was inspired from https://github.com/simonblee/aba-file-generator
+Generates an aba file for bulk banking transactions with Australian banks and NAB international payment file
 
 > **Note:**
 
@@ -228,7 +229,11 @@ For NAB International payment file
     }
 
 ```
+or you can put in your file by 
 
+```php
+file_put_contents('/my/aba/file.aba', $abaString);
+```
 Enjoy! :smile:
 
 References
