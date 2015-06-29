@@ -64,6 +64,10 @@ class AppKernel extends Kernel
 Step 3: Usage
 -------------------------
 ```php
+    use Latysh\AbaBundle\Model\Aba;
+    
+    // ...
+
      /**
      * @Route("/aba_test", name="aba_test")
      */
@@ -138,6 +142,10 @@ Step 3: Usage
 For NAB International payment file
 
 ```php
+    use Latysh\AbaBundle\Model\NabInt;
+    
+    // ...
+    
      /**
      * @Route("/nab_aba_test", name="nab_aba_test")
      */
@@ -229,7 +237,7 @@ For NAB International payment file
     }
 
 ```
-or you can use file_put_contents instead of streaming file contents
+or you can put in your file by 
 
 ```php
 file_put_contents('/my/aba/file.aba', $abaString);
