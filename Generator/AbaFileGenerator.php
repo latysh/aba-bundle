@@ -11,13 +11,15 @@ use Latysh\AbaBundle\Model\Aba\TransactionInterface;
 use Latysh\AbaBundle\Model\Aba\TransactionCode;
 use Symfony\Component\Validator\Exception\ValidatorException;
 
-class AbaFileGenerator {
+class AbaFileGenerator
+{
 
     private $validator;
 
     private $abaString;
 
-    public function __construct($validator) {
+    public function __construct($validator)
+    {
         $this->validator = $validator;
         $this->abaString = '';
     }
@@ -28,7 +30,8 @@ class AbaFileGenerator {
      *
      * @return string
      */
-    public function generate($params = [], $detailRecords) {
+    public function generate($params = [], $detailRecords)
+    {
         $descriptiveRecord = new DescriptiveRecord();
         $descriptiveRecord->setBsb($params['bsb']);
         $descriptiveRecord->setAccountNumber($params['accountNumber']);
@@ -43,7 +46,7 @@ class AbaFileGenerator {
         $errors = $this->validator->validate($descriptiveRecord);
 
         if (count($errors) > 0) {
-            throw new ValidatorException('Descriptive record error: ' . (string)$errors);
+            throw new ValidatorException('Descriptive record error: '.(string)$errors);
         } else {
             $this->addDescriptiveRecord($descriptiveRecord);
         }
@@ -57,13 +60,17 @@ class AbaFileGenerator {
             $errors = $this->validator->validate($detailRecord);
 
             if (count($errors) > 0) {
-                throw new ValidatorException('Detail record error: ' . (string)$errors);
+                throw new ValidatorException('Detail record error: '.(string)$errors);
             } else {
                 $this->addDetailRecord($detailRecord, $descriptiveRecord);
                 if ($detailRecord->getTransactionCode() === TransactionCode::EXTERNALLY_INITIATED_DEBIT) {
-                    $batchControlRecord->setDebitTotal($batchControlRecord->getDebitTotal() + $detailRecord->getAmount());
+                    $batchControlRecord->setDebitTotal(
+                        $batchControlRecord->getDebitTotal() + $detailRecord->getAmount()
+                    );
                 } else {
-                    $batchControlRecord->setCreditTotal($batchControlRecord->getCreditTotal() + $detailRecord->getAmount());
+                    $batchControlRecord->setCreditTotal(
+                        $batchControlRecord->getCreditTotal() + $detailRecord->getAmount()
+                    );
                 }
             }
         }
@@ -80,7 +87,8 @@ class AbaFileGenerator {
      *
      *
      */
-    private function addDescriptiveRecord(DescriptiveRecord $descriptiveRecord) {
+    private function addDescriptiveRecord(DescriptiveRecord $descriptiveRecord)
+    {
         // Record Type
         $line = $descriptiveRecord->getRecordType();
 
@@ -129,7 +137,8 @@ class AbaFileGenerator {
      * @param array|DetailRecord $detailRecord
      * @param DescriptiveRecord $descriptiveRecord
      */
-    private function addDetailRecord(DetailRecord $detailRecord, DescriptiveRecord $descriptiveRecord) {
+    private function addDetailRecord(DetailRecord $detailRecord, DescriptiveRecord $descriptiveRecord)
+    {
         // Record Type
         $line = $detailRecord->getRecordType();
 
@@ -174,7 +183,8 @@ class AbaFileGenerator {
      *
      * @param BatchControlRecord $batchControlRecord
      */
-    private function addBatchControlRecord(BatchControlRecord $batchControlRecord) {
+    private function addBatchControlRecord(BatchControlRecord $batchControlRecord)
+    {
         // Record Type
         $line = $batchControlRecord->getRecordType();
 
@@ -185,7 +195,12 @@ class AbaFileGenerator {
         $line .= str_repeat(' ', 12);
 
         // Batch Net Total
-        $line .= str_pad(abs($batchControlRecord->getCreditTotal() - $batchControlRecord->getDebitTotal()), 10, '0', STR_PAD_LEFT);
+        $line .= str_pad(
+            abs($batchControlRecord->getCreditTotal() - $batchControlRecord->getDebitTotal()),
+            10,
+            '0',
+            STR_PAD_LEFT
+        );
 
         // Batch Credits Total
         $line .= str_pad($batchControlRecord->getCreditTotal(), 10, '0', STR_PAD_LEFT);
@@ -205,7 +220,8 @@ class AbaFileGenerator {
         $this->addLine($line, false);
     }
 
-    private function addLine($line, $crlf = true) {
-        $this->abaString .= $line . ($crlf ? "\r\n" : "");
+    private function addLine($line, $crlf = true)
+    {
+        $this->abaString .= $line.($crlf ? "\r\n" : "");
     }
 }

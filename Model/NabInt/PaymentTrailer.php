@@ -6,8 +6,8 @@ namespace Latysh\AbaBundle\Model\NabInt;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class PaymentTrailer {
-
+class PaymentTrailer
+{
     /**
      * @var string $indicator
      *
@@ -17,21 +17,24 @@ class PaymentTrailer {
     private $indicator;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setIndicator('89');
     }
 
     /**
      * @return string
      */
-    public function getIndicator() {
+    public function getIndicator()
+    {
         return $this->indicator;
     }
 
     /**
      * @param string $indicator
      */
-    public function setIndicator($indicator) {
+    public function setIndicator($indicator)
+    {
         $this->indicator = $indicator;
     }
 }

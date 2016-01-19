@@ -7,9 +7,8 @@ namespace Latysh\AbaBundle\Model\Aba;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-
-class DetailRecord implements TransactionInterface {
-
+class DetailRecord implements TransactionInterface
+{
     /**
      * @var string $recordType
      *
@@ -113,14 +112,16 @@ class DetailRecord implements TransactionInterface {
      */
     private $taxWithholding;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setRecordType('1');
         $this->setIndicator(null);
         $this->setRemitter(null);
         $this->setTaxWithholding(0);
     }
 
-    public static function getTransactionCodes() {
+    public static function getTransactionCodes()
+    {
         return [
             TransactionCode::EXTERNALLY_INITIATED_DEBIT,
             TransactionCode::EXTERNALLY_INITIATED_CREDIT,
@@ -130,7 +131,7 @@ class DetailRecord implements TransactionInterface {
             TransactionCode::PENSION_PAYMENT,
             TransactionCode::ALLOTMENT,
             TransactionCode::DIVIDEND,
-            TransactionCode::DEBENTURE_OR_NOTE_INTEREST
+            TransactionCode::DEBENTURE_OR_NOTE_INTEREST,
         ];
     }
 
@@ -138,7 +139,8 @@ class DetailRecord implements TransactionInterface {
      * @param ExecutionContextInterface $context
      * @Assert\Callback
      */
-    public function validate(ExecutionContextInterface $context) {
+    public function validate(ExecutionContextInterface $context)
+    {
         //additional validations
         if (in_array($this->getIndicator(), ['W', 'X', 'Y']) && $this->getTaxWithholding() == '') {
             $context->buildViolation('If indicator is either W, X, Y then you have to set withholding tax')
@@ -150,140 +152,160 @@ class DetailRecord implements TransactionInterface {
     /**
      * @return string
      */
-    public function getRecordType() {
+    public function getRecordType()
+    {
         return $this->recordType;
     }
 
     /**
      * @param string $recordType
      */
-    public function setRecordType($recordType) {
+    public function setRecordType($recordType)
+    {
         $this->recordType = $recordType;
     }
 
     /**
      * @return string
      */
-    public function getBsb() {
+    public function getBsb()
+    {
         return $this->bsb;
     }
 
     /**
      * @param string $bsb
      */
-    public function setBsb($bsb) {
+    public function setBsb($bsb)
+    {
         $this->bsb = $bsb;
     }
 
     /**
      * @return string
      */
-    public function getAccountNumber() {
+    public function getAccountNumber()
+    {
         return $this->accountNumber;
     }
 
     /**
      * @param string $accountNumber
      */
-    public function setAccountNumber($accountNumber) {
+    public function setAccountNumber($accountNumber)
+    {
         $this->accountNumber = $accountNumber;
     }
 
     /**
      * @return string
      */
-    public function getIndicator() {
+    public function getIndicator()
+    {
         return $this->indicator;
     }
 
     /**
      * @param string $indicator
      */
-    public function setIndicator($indicator) {
+    public function setIndicator($indicator)
+    {
         $this->indicator = $indicator;
     }
 
     /**
      * @return string
      */
-    public function getTransactionCode() {
+    public function getTransactionCode()
+    {
         return $this->transactionCode;
     }
 
     /**
      * @param string $transactionCode
      */
-    public function setTransactionCode($transactionCode) {
+    public function setTransactionCode($transactionCode)
+    {
         $this->transactionCode = $transactionCode;
     }
 
     /**
      * @return integer
      */
-    public function getAmount() {
+    public function getAmount()
+    {
         return $this->amount;
     }
 
     /**
      * @param integer $amount
      */
-    public function setAmount($amount) {
+    public function setAmount($amount)
+    {
         $this->amount = $amount;
     }
 
     /**
      * @return string
      */
-    public function getAccountName() {
+    public function getAccountName()
+    {
         return $this->accountName;
     }
 
     /**
      * @param string $accountName
      */
-    public function setAccountName($accountName) {
+    public function setAccountName($accountName)
+    {
         $this->accountName = $accountName;
     }
 
     /**
      * @return string
      */
-    public function getReference() {
+    public function getReference()
+    {
         return $this->reference;
     }
 
     /**
      * @param string $reference
      */
-    public function setReference($reference) {
+    public function setReference($reference)
+    {
         $this->reference = $reference;
     }
 
     /**
      * @return string
      */
-    public function getRemitter() {
+    public function getRemitter()
+    {
         return $this->remitter;
     }
 
     /**
      * @param string $remitter
      */
-    public function setRemitter($remitter) {
+    public function setRemitter($remitter)
+    {
         $this->remitter = $remitter;
     }
 
     /**
      * @return integer
      */
-    public function getTaxWithholding() {
+    public function getTaxWithholding()
+    {
         return $this->taxWithholding;
     }
 
     /**
      * @param integer $taxWithholding
      */
-    public function setTaxWithholding($taxWithholding) {
+    public function setTaxWithholding($taxWithholding)
+    {
         $this->taxWithholding = $taxWithholding;
     }
 }

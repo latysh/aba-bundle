@@ -6,8 +6,8 @@ namespace Latysh\AbaBundle\Model\NabInt;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class FileTrailerRecord {
-
+class FileTrailerRecord
+{
     /**
      * @var string $indicator
      *
@@ -35,7 +35,8 @@ class FileTrailerRecord {
     private $createdDate;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setIndicator('99');
         $this->setCreatedDate(new \DateTime());
     }
@@ -43,42 +44,48 @@ class FileTrailerRecord {
     /**
      * @return string
      */
-    public function getIndicator() {
+    public function getIndicator()
+    {
         return $this->indicator;
     }
 
     /**
      * @param string $indicator
      */
-    public function setIndicator($indicator) {
+    public function setIndicator($indicator)
+    {
         $this->indicator = $indicator;
     }
 
     /**
      * @return string
      */
-    public function getFilename() {
+    public function getFilename()
+    {
         return $this->filename;
     }
 
     /**
      * @param string $filename
      */
-    public function setFilename($filename) {
+    public function setFilename($filename)
+    {
         $this->filename = $filename;
     }
 
     /**
      * @return \DateTime
      */
-    public function getCreatedDate() {
+    public function getCreatedDate()
+    {
         return $this->createdDate;
     }
 
     /**
      * @param \DateTime $createdDate
      */
-    public function setCreatedDate($createdDate) {
+    public function setCreatedDate($createdDate)
+    {
         $this->createdDate = $createdDate;
     }
 }

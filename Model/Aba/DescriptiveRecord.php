@@ -6,8 +6,8 @@ namespace Latysh\AbaBundle\Model\Aba;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class DescriptiveRecord {
-
+class DescriptiveRecord
+{
     /**
      * @var string $recordType
      *
@@ -99,7 +99,8 @@ class DescriptiveRecord {
      */
     private $processingDateTime;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setRecordType('0');
         $this->setSequenceNumber('01');
         $this->setProcessingDateTime(new \DateTime());
@@ -108,126 +109,144 @@ class DescriptiveRecord {
     /**
      * @return string
      */
-    public function getRecordType() {
+    public function getRecordType()
+    {
         return $this->recordType;
     }
 
     /**
      * @param string $recordType
      */
-    public function setRecordType($recordType) {
+    public function setRecordType($recordType)
+    {
         $this->recordType = $recordType;
     }
 
     /**
      * @return string
      */
-    public function getBsb() {
+    public function getBsb()
+    {
         return $this->bsb;
     }
 
     /**
      * @param string $bsb
      */
-    public function setBsb($bsb) {
+    public function setBsb($bsb)
+    {
         $this->bsb = $bsb;
     }
 
     /**
      * @return string
      */
-    public function getAccountNumber() {
+    public function getAccountNumber()
+    {
         return $this->accountNumber;
     }
 
     /**
      * @param string $accountNumber
      */
-    public function setAccountNumber($accountNumber) {
+    public function setAccountNumber($accountNumber)
+    {
         $this->accountNumber = $accountNumber;
     }
 
     /**
      * @return string
      */
-    public function getSequenceNumber() {
+    public function getSequenceNumber()
+    {
         return $this->sequenceNumber;
     }
 
     /**
      * @param string $sequenceNumber
      */
-    public function setSequenceNumber($sequenceNumber) {
+    public function setSequenceNumber($sequenceNumber)
+    {
         $this->sequenceNumber = $sequenceNumber;
     }
 
     /**
      * @return string
      */
-    public function getBankName() {
+    public function getBankName()
+    {
         return $this->bankName;
     }
 
     /**
      * @param string $bankName
      */
-    public function setBankName($bankName) {
+    public function setBankName($bankName)
+    {
         $this->bankName = $bankName;
     }
 
     /**
      * @return string
      */
-    public function getUserName() {
+    public function getUserName()
+    {
         return $this->userName;
     }
 
     /**
      * @param string $userName
      */
-    public function setUserName($userName) {
+    public function setUserName($userName)
+    {
         $this->userName = $userName;
     }
 
     /**
      * @return string
      */
-    public function getDirectEntryUserId() {
+    public function getDirectEntryUserId()
+    {
         return $this->directEntryUserId;
     }
 
     /**
      * @param string $directEntryUserId
      */
-    public function setDirectEntryUserId($directEntryUserId) {
+    public function setDirectEntryUserId($directEntryUserId)
+    {
         $this->directEntryUserId = $directEntryUserId;
     }
 
     /**
      * @return string
      */
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
     /**
      * @param string $description
      */
-    public function setDescription($description) {
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
     /**
      * @return \DateTime
      */
-    public function getProcessingDateTime() {
+    public function getProcessingDateTime()
+    {
         return $this->processingDateTime;
     }
 
     /**
      * @param \DateTime $processingDateTime
      */
-    public function setProcessingDateTime($processingDateTime) {
+    public function setProcessingDateTime($processingDateTime)
+    {
         $this->processingDateTime = $processingDateTime;
     }
 }

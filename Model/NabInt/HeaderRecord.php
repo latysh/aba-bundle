@@ -6,8 +6,8 @@ namespace Latysh\AbaBundle\Model\NabInt;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class HeaderRecord {
-
+class HeaderRecord
+{
     /**
      * @var string $indicator
      *
@@ -34,7 +34,8 @@ class HeaderRecord {
      */
     private $numberMessages;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setIndicator('01');
         $this->setNumberMessages('0');
     }
@@ -42,35 +43,40 @@ class HeaderRecord {
     /**
      * @return string
      */
-    public function getIndicator() {
+    public function getIndicator()
+    {
         return $this->indicator;
     }
 
     /**
      * @param string $indicator
      */
-    public function setIndicator($indicator) {
+    public function setIndicator($indicator)
+    {
         $this->indicator = $indicator;
     }
 
     /**
      * @return string
      */
-    public function getFileName() {
+    public function getFileName()
+    {
         return $this->fileName;
     }
 
     /**
      * @return string
      */
-    public function getNumberMessages() {
+    public function getNumberMessages()
+    {
         return $this->numberMessages;
     }
 
     /**
      * @param string $numberMessages
      */
-    public function setNumberMessages($numberMessages) {
+    public function setNumberMessages($numberMessages)
+    {
         $this->numberMessages = $numberMessages;
     }
 }

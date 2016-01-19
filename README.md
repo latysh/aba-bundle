@@ -61,7 +61,7 @@ class AppKernel extends Kernel
 }
 ```
 
-Step 3: Usage
+Step 3: Usage in the controller
 -------------------------
 ```php
     use Latysh\AbaBundle\Model\Aba;

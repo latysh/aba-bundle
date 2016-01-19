@@ -7,8 +7,8 @@ namespace Latysh\AbaBundle\Model\NabInt;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class PaymentDetailRecord {
-
+class PaymentDetailRecord
+{
     /**
      * @var string $indicator
      *
@@ -166,7 +166,8 @@ class PaymentDetailRecord {
      */
     private $efxNumber;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setIndicator('55');
     }
 
@@ -174,17 +175,24 @@ class PaymentDetailRecord {
      * @param ExecutionContextInterface $context
      * @Assert\Callback
      */
-    public function validate(ExecutionContextInterface $context) {
+    public function validate(ExecutionContextInterface $context)
+    {
         //Payment method
-        if (in_array($this->getPaymentMethod(), ['AUD', 'BTC', 'FEC', 'RTR', 'EFX']) && $this->getDebitCurrencyCode() != 'AUD') {
+        if (in_array($this->getPaymentMethod(), ['AUD', 'BTC', 'FEC', 'RTR', 'EFX']) && $this->getDebitCurrencyCode(
+            ) != 'AUD'
+        ) {
             $context->buildViolation('For payment methods (AUD, BTC, FEC, RTR, EFX) currency should be AUD')
                 ->atPath('paymentMethod')
                 ->addViolation();
         }
 
         //Debit account number
-        if (($this->getDebitAccountNumber() == '' && $this->getRefinanceIndicator() == '0') || ($this->getDebitAccountNumber() != '' && $this->getRefinanceIndicator() == '1')) {
-            $context->buildViolation('Debit account number mandatory if refinance indicator is 0, must be blank if refinance indicator is 1')
+        if (($this->getDebitAccountNumber() == '' && $this->getRefinanceIndicator(
+                ) == '0') || ($this->getDebitAccountNumber() != '' && $this->getRefinanceIndicator() == '1')
+        ) {
+            $context->buildViolation(
+                'Debit account number mandatory if refinance indicator is 0, must be blank if refinance indicator is 1'
+            )
                 ->atPath('debitAccountNumber')
                 ->addViolation();
         }
@@ -214,182 +222,208 @@ class PaymentDetailRecord {
     /**
      * @return string
      */
-    public function getIndicator() {
+    public function getIndicator()
+    {
         return $this->indicator;
     }
 
     /**
      * @param string $indicator
      */
-    public function setIndicator($indicator) {
+    public function setIndicator($indicator)
+    {
         $this->indicator = $indicator;
     }
 
     /**
      * @return string
      */
-    public function getPaymentMethod() {
+    public function getPaymentMethod()
+    {
         return $this->paymentMethod;
     }
 
     /**
      * @param string $paymentMethod
      */
-    public function setPaymentMethod($paymentMethod) {
+    public function setPaymentMethod($paymentMethod)
+    {
         $this->paymentMethod = $paymentMethod;
     }
 
     /**
      * @return string
      */
-    public function getPaymentLegCurrencyCode() {
+    public function getPaymentLegCurrencyCode()
+    {
         return $this->paymentLegCurrencyCode;
     }
 
     /**
      * @param string $paymentLegCurrencyCode
      */
-    public function setPaymentLegCurrencyCode($paymentLegCurrencyCode) {
+    public function setPaymentLegCurrencyCode($paymentLegCurrencyCode)
+    {
         $this->paymentLegCurrencyCode = $paymentLegCurrencyCode;
     }
 
     /**
      * @return float
      */
-    public function getPaymentLegAmount() {
+    public function getPaymentLegAmount()
+    {
         return $this->paymentLegAmount;
     }
 
     /**
      * @param float $paymentLegAmount
      */
-    public function setPaymentLegAmount($paymentLegAmount) {
+    public function setPaymentLegAmount($paymentLegAmount)
+    {
         $this->paymentLegAmount = $paymentLegAmount;
     }
 
     /**
      * @return string
      */
-    public function getFxRate() {
+    public function getFxRate()
+    {
         return $this->fxRate;
     }
 
     /**
      * @param string $fxRate
      */
-    public function setFxRate($fxRate) {
+    public function setFxRate($fxRate)
+    {
         $this->fxRate = $fxRate;
     }
 
     /**
      * @return string
      */
-    public function getDebitAccountBsb() {
+    public function getDebitAccountBsb()
+    {
         return $this->debitAccountBsb;
     }
 
     /**
      * @param string $debitAccountBsb
      */
-    public function setDebitAccountBsb($debitAccountBsb) {
+    public function setDebitAccountBsb($debitAccountBsb)
+    {
         $this->debitAccountBsb = $debitAccountBsb;
     }
 
     /**
      * @return string
      */
-    public function getDebitAccountNumber() {
+    public function getDebitAccountNumber()
+    {
         return $this->debitAccountNumber;
     }
 
     /**
      * @param string $debitAccountNumber
      */
-    public function setDebitAccountNumber($debitAccountNumber) {
+    public function setDebitAccountNumber($debitAccountNumber)
+    {
         $this->debitAccountNumber = $debitAccountNumber;
     }
 
     /**
      * @return string
      */
-    public function getDebitCurrencyCode() {
+    public function getDebitCurrencyCode()
+    {
         return $this->debitCurrencyCode;
     }
 
     /**
      * @param string $debitCurrencyCode
      */
-    public function setDebitCurrencyCode($debitCurrencyCode) {
+    public function setDebitCurrencyCode($debitCurrencyCode)
+    {
         $this->debitCurrencyCode = $debitCurrencyCode;
     }
 
     /**
      * @return float
      */
-    public function getDebitAmount() {
+    public function getDebitAmount()
+    {
         return $this->debitAmount;
     }
 
     /**
      * @param float $debitAmount
      */
-    public function setDebitAmount($debitAmount) {
+    public function setDebitAmount($debitAmount)
+    {
         $this->debitAmount = $debitAmount;
     }
 
     /**
      * @return string
      */
-    public function getRefinanceIndicator() {
+    public function getRefinanceIndicator()
+    {
         return $this->refinanceIndicator;
     }
 
     /**
      * @param string $refinanceIndicator
      */
-    public function setRefinanceIndicator($refinanceIndicator) {
+    public function setRefinanceIndicator($refinanceIndicator)
+    {
         $this->refinanceIndicator = $refinanceIndicator;
     }
 
     /**
      * @return string
      */
-    public function getTextToNabForPayAccount() {
+    public function getTextToNabForPayAccount()
+    {
         return $this->textToNabForPayAccount;
     }
 
     /**
      * @param string $textToNabForPayAccount
      */
-    public function setTextToNabForPayAccount($textToNabForPayAccount) {
+    public function setTextToNabForPayAccount($textToNabForPayAccount)
+    {
         $this->textToNabForPayAccount = $textToNabForPayAccount;
     }
 
     /**
      * @return string
      */
-    public function getFecNumber() {
+    public function getFecNumber()
+    {
         return $this->fecNumber;
     }
 
     /**
      * @param string $fecNumber
      */
-    public function setFecNumber($fecNumber) {
+    public function setFecNumber($fecNumber)
+    {
         $this->fecNumber = $fecNumber;
     }
 
     /**
      * @return string
      */
-    public function getEfxNumber() {
+    public function getEfxNumber()
+    {
         return $this->efxNumber;
     }
 
     /**
      * @param string $efxNumber
      */
-    public function setEfxNumber($efxNumber) {
+    public function setEfxNumber($efxNumber)
+    {
         $this->efxNumber = $efxNumber;
     }
 }

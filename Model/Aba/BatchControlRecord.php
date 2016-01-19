@@ -6,8 +6,8 @@ namespace Latysh\AbaBundle\Model\Aba;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class BatchControlRecord {
-
+class BatchControlRecord
+{
     /**
      * @var string $recordType
      *
@@ -71,7 +71,8 @@ class BatchControlRecord {
      */
     private $numberRecords;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setRecordType('7');
         $this->setBsb('999-999');
         $this->setNetTotal('0');
@@ -83,84 +84,96 @@ class BatchControlRecord {
     /**
      * @return string
      */
-    public function getRecordType() {
+    public function getRecordType()
+    {
         return $this->recordType;
     }
 
     /**
      * @param string $recordType
      */
-    public function setRecordType($recordType) {
+    public function setRecordType($recordType)
+    {
         $this->recordType = $recordType;
     }
 
     /**
      * @return string
      */
-    public function getBsb() {
+    public function getBsb()
+    {
         return $this->bsb;
     }
 
     /**
      * @param string $bsb
      */
-    public function setBsb($bsb) {
+    public function setBsb($bsb)
+    {
         $this->bsb = $bsb;
     }
 
     /**
      * @return integer
      */
-    public function getNetTotal() {
+    public function getNetTotal()
+    {
         return $this->netTotal;
     }
 
     /**
      * @param integer $netTotal
      */
-    public function setNetTotal($netTotal) {
+    public function setNetTotal($netTotal)
+    {
         $this->netTotal = $netTotal;
     }
 
     /**
      * @return integer
      */
-    public function getCreditTotal() {
+    public function getCreditTotal()
+    {
         return $this->creditTotal;
     }
 
     /**
      * @param integer $creditTotal
      */
-    public function setCreditTotal($creditTotal) {
+    public function setCreditTotal($creditTotal)
+    {
         $this->creditTotal = $creditTotal;
     }
 
     /**
      * @return integer
      */
-    public function getDebitTotal() {
+    public function getDebitTotal()
+    {
         return $this->debitTotal;
     }
 
     /**
      * @param integer $debitTotal
      */
-    public function setDebitTotal($debitTotal) {
+    public function setDebitTotal($debitTotal)
+    {
         $this->debitTotal = $debitTotal;
     }
 
     /**
      * @return mixed
      */
-    public function getNumberRecords() {
+    public function getNumberRecords()
+    {
         return $this->numberRecords;
     }
 
     /**
      * @param mixed $numberRecords
      */
-    public function setNumberRecords($numberRecords) {
+    public function setNumberRecords($numberRecords)
+    {
         $this->numberRecords = $numberRecords;
     }
 }

@@ -13,13 +13,15 @@ use Latysh\AbaBundle\Model\NabInt\PaymentTrailer;
 use Latysh\AbaBundle\Model\NabInt\FileTrailerRecord;
 use Symfony\Component\Validator\Exception\ValidatorException;
 
-class NabIntAbaFileGenerator {
+class NabIntAbaFileGenerator
+{
 
     private $validator;
 
     private $abaString;
 
-    public function __construct($validator) {
+    public function __construct($validator)
+    {
         $this->validator = $validator;
         $this->abaString = '';
     }
@@ -29,7 +31,8 @@ class NabIntAbaFileGenerator {
      *
      * @return string
      */
-    public function generate($paymentRecords) {
+    public function generate($paymentRecords)
+    {
         $headerRecord = new HeaderRecord();
         $headerRecord->setNumberMessages(count($paymentRecords));
         $paymentHeader = new PaymentHeader();
@@ -44,18 +47,20 @@ class NabIntAbaFileGenerator {
         foreach ($paymentRecords as $paymentRecord) {
             // Payment header
             $this->addPaymentHeader($paymentHeader);
-            
+
             $paymentRecord->setNumberOfDetailRecords(count($paymentRecord->getPaymentDetailRecords()));
             //calculate sum of payment amount
             foreach ($paymentRecord->getPaymentDetailRecords() as $paymentDetailRecord) {
-                $paymentRecord->setPaymentAmount($paymentRecord->getPaymentAmount() + $paymentDetailRecord->getPaymentLegAmount());
+                $paymentRecord->setPaymentAmount(
+                    $paymentRecord->getPaymentAmount() + $paymentDetailRecord->getPaymentLegAmount()
+                );
             }
 
             // Payment record validation
             $errors = $this->validator->validate($paymentRecord);
 
             if (count($errors) > 0) {
-                throw new ValidatorException('Payment record error: ' . (string)$errors);
+                throw new ValidatorException('Payment record error: '.(string)$errors);
             } else {
                 // Payment record
                 $this->addPaymentRecord($paymentRecord);
@@ -65,7 +70,7 @@ class NabIntAbaFileGenerator {
                     $errors = $this->validator->validate($paymentDetailRecord);
 
                     if (count($errors) > 0) {
-                        throw new ValidatorException('Payment detail record error: ' . (string)$errors);
+                        throw new ValidatorException('Payment detail record error: '.(string)$errors);
                     } else {
                         // Payment detail record
                         $this->addPaymentDetailRecord($paymentDetailRecord);
@@ -94,7 +99,8 @@ class NabIntAbaFileGenerator {
      * @param HeaderRecord $headerRecord
      *
      */
-    private function addHeaderRecord(HeaderRecord $headerRecord) {
+    private function addHeaderRecord(HeaderRecord $headerRecord)
+    {
         // Indicator
         $line = $headerRecord->getIndicator();
 
@@ -112,7 +118,8 @@ class NabIntAbaFileGenerator {
      * @param PaymentHeader $paymentHeader
      *
      */
-    private function addPaymentHeader(PaymentHeader $paymentHeader) {
+    private function addPaymentHeader(PaymentHeader $paymentHeader)
+    {
         // Indicator
         $line = $paymentHeader->getIndicator();
 
@@ -130,7 +137,8 @@ class NabIntAbaFileGenerator {
      * @param PaymentRecord $paymentRecord
      *
      */
-    private function addPaymentRecord(PaymentRecord $paymentRecord) {
+    private function addPaymentRecord(PaymentRecord $paymentRecord)
+    {
         // Indicator
         $line = $paymentRecord->getIndicator();
 
@@ -138,7 +146,12 @@ class NabIntAbaFileGenerator {
         $line .= $paymentRecord->getPayCurrencyCode();
 
         // Payment amount
-        $line .= str_pad($this->getAmountFormatted($paymentRecord->getPayCurrencyCode(), $paymentRecord->getPaymentAmount()), 15, '0', STR_PAD_LEFT);
+        $line .= str_pad(
+            $this->getAmountFormatted($paymentRecord->getPayCurrencyCode(), $paymentRecord->getPaymentAmount()),
+            15,
+            '0',
+            STR_PAD_LEFT
+        );
 
         // Value date
         $line .= $paymentRecord->getValueDate()->format('dmY');
@@ -186,7 +199,10 @@ class NabIntAbaFileGenerator {
         $line .= str_pad($paymentRecord->getRefinanceDays(), 3, ' ', STR_PAD_RIGHT);
 
         // Refinance date
-        $line .= ($paymentRecord->getRefinanceDate())? $paymentRecord->getRefinanceDate()->format('dmY'): str_repeat(' ', 8);
+        $line .= ($paymentRecord->getRefinanceDate()) ? $paymentRecord->getRefinanceDate()->format('dmY') : str_repeat(
+            ' ',
+            8
+        );
 
         // Additional Instructions to Beneficiary Line 1
         $line .= str_pad($paymentRecord->getAdditionalBeneficiaryInstructions1(), 35, ' ', STR_PAD_RIGHT);
@@ -238,7 +254,8 @@ class NabIntAbaFileGenerator {
      * @param PaymentDetailRecord $paymentDetailRecord
      *
      */
-    private function addPaymentDetailRecord(PaymentDetailRecord $paymentDetailRecord) {
+    private function addPaymentDetailRecord(PaymentDetailRecord $paymentDetailRecord)
+    {
         // Payment Detail Record
         $line = $paymentDetailRecord->getIndicator();
 
@@ -249,7 +266,15 @@ class NabIntAbaFileGenerator {
         $line .= $paymentDetailRecord->getPaymentLegCurrencyCode();
 
         // Payment Leg Currency Amount
-        $line .= str_pad($this->getAmountFormatted($paymentDetailRecord->getPaymentLegCurrencyCode(), $paymentDetailRecord->getPaymentLegAmount()), 15, '0', STR_PAD_LEFT);
+        $line .= str_pad(
+            $this->getAmountFormatted(
+                $paymentDetailRecord->getPaymentLegCurrencyCode(),
+                $paymentDetailRecord->getPaymentLegAmount()
+            ),
+            15,
+            '0',
+            STR_PAD_LEFT
+        );
 
         // FX Rate
         $line .= str_pad($paymentDetailRecord->getFxRate(), 11, '0', STR_PAD_LEFT);
@@ -264,7 +289,15 @@ class NabIntAbaFileGenerator {
         $line .= $paymentDetailRecord->getDebitCurrencyCode();
 
         // Debit Amount
-        $line .= ($paymentDetailRecord->getDebitAmount()) ? str_pad($this->getAmountFormatted($paymentDetailRecord->getDebitCurrencyCode(), $paymentDetailRecord->getDebitAmount()), 15, '0', STR_PAD_LEFT) : str_repeat(' ', 15);
+        $line .= ($paymentDetailRecord->getDebitAmount()) ? str_pad(
+            $this->getAmountFormatted(
+                $paymentDetailRecord->getDebitCurrencyCode(),
+                $paymentDetailRecord->getDebitAmount()
+            ),
+            15,
+            '0',
+            STR_PAD_LEFT
+        ) : str_repeat(' ', 15);
 
         // Refinance Indicator
         $line .= $paymentDetailRecord->getRefinanceIndicator();
@@ -286,7 +319,8 @@ class NabIntAbaFileGenerator {
      * @param PaymentTrailerRecord $paymentTrailerRecord
      *
      */
-    private function addPaymentTrailerRecord(PaymentTrailerRecord $paymentTrailerRecord) {
+    private function addPaymentTrailerRecord(PaymentTrailerRecord $paymentTrailerRecord)
+    {
         // Indicator
         $line = $paymentTrailerRecord->getIndicator();
 
@@ -298,7 +332,8 @@ class NabIntAbaFileGenerator {
      * @param PaymentTrailer $paymentTrailer
      *
      */
-    private function addPaymentTrailer(PaymentTrailer $paymentTrailer) {
+    private function addPaymentTrailer(PaymentTrailer $paymentTrailer)
+    {
         // Indicator
         $line = $paymentTrailer->getIndicator();
 
@@ -310,7 +345,8 @@ class NabIntAbaFileGenerator {
      * @param FileTrailerRecord $fileTrailerRecord
      *
      */
-    private function addFileTrailerRecord(FileTrailerRecord $fileTrailerRecord) {
+    private function addFileTrailerRecord(FileTrailerRecord $fileTrailerRecord)
+    {
         // Indicator
         $line = $fileTrailerRecord->getIndicator();
 
@@ -323,8 +359,9 @@ class NabIntAbaFileGenerator {
         $this->addLine($line);
     }
 
-    private function addLine($line, $crlf = true) {
-        $this->abaString .= $line . ($crlf ? "\r\n" : "");
+    private function addLine($line, $crlf = true)
+    {
+        $this->abaString .= $line.($crlf ? "\r\n" : "");
     }
 
     /**
@@ -334,16 +371,19 @@ class NabIntAbaFileGenerator {
      *
      * @return string $format
      */
-    private function getAmountFormatted($currency, $amount) {
+    private function getAmountFormatted($currency, $amount)
+    {
         if (in_array($currency, ['BHD', 'JOD', 'KWD', 'OMR'])) {
             $format = number_format($amount, 3, '.', '');
-        } else if (in_array($currency, ['IDR', 'JPY', 'KWD', 'OMR'])) {
-            $format = number_format($amount, 0, '.', '');
         } else {
-            if (is_numeric($amount) && floor($amount) != $amount) { // if number if not decimal we put it as it is
-                $format = number_format($amount, 2, '.', '');
+            if (in_array($currency, ['IDR', 'JPY', 'KWD', 'OMR'])) {
+                $format = number_format($amount, 0, '.', '');
             } else {
-                $format = $amount;
+                if (is_numeric($amount) && floor($amount) != $amount) { // if number if not decimal we put it as it is
+                    $format = number_format($amount, 2, '.', '');
+                } else {
+                    $format = $amount;
+                }
             }
         }
 

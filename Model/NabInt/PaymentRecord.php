@@ -7,8 +7,8 @@ namespace Latysh\AbaBundle\Model\NabInt;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class PaymentRecord {
-
+class PaymentRecord
+{
     /**
      * @var string $indicator
      *
@@ -364,7 +364,8 @@ class PaymentRecord {
      */
     private $paymentDetailRecords;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->setIndicator('03');
     }
 
@@ -372,16 +373,21 @@ class PaymentRecord {
      * @param ExecutionContextInterface $context
      * @Assert\Callback
      */
-    public function validate(ExecutionContextInterface $context) {
+    public function validate(ExecutionContextInterface $context)
+    {
         //Routing type
         if ($this->getRoutingType() == '' && $this->getRoutingCode() != '') {
-            $context->buildViolation('Please check payment record routing type. It should be set, because you set routing code')
+            $context->buildViolation(
+                'Please check payment record routing type. It should be set, because you set routing code'
+            )
                 ->atPath('routingType')
                 ->addViolation();
         }
         //Routing code
         if ($this->getRoutingCode() == '' && $this->getRoutingType() != '') {
-            $context->buildViolation('Please check payment record routing code. It should be set, because you set routing type')
+            $context->buildViolation(
+                'Please check payment record routing code. It should be set, because you set routing type'
+            )
                 ->atPath('routingType')
                 ->addViolation();
         }
@@ -390,476 +396,544 @@ class PaymentRecord {
     /**
      * @return string
      */
-    public function getIndicator() {
+    public function getIndicator()
+    {
         return $this->indicator;
     }
 
     /**
      * @param string $indicator
      */
-    public function setIndicator($indicator) {
+    public function setIndicator($indicator)
+    {
         $this->indicator = $indicator;
     }
 
     /**
      * @return string
      */
-    public function getPayCurrencyCode() {
+    public function getPayCurrencyCode()
+    {
         return $this->payCurrencyCode;
     }
 
     /**
      * @param string $payCurrencyCode
      */
-    public function setPayCurrencyCode($payCurrencyCode) {
+    public function setPayCurrencyCode($payCurrencyCode)
+    {
         $this->payCurrencyCode = $payCurrencyCode;
     }
 
     /**
      * @return float
      */
-    public function getPaymentAmount() {
+    public function getPaymentAmount()
+    {
         return $this->paymentAmount;
     }
 
     /**
      * @param float $paymentAmount
      */
-    public function setPaymentAmount($paymentAmount) {
+    public function setPaymentAmount($paymentAmount)
+    {
         $this->paymentAmount = $paymentAmount;
     }
 
     /**
      * @return \DateTime
      */
-    public function getValueDate() {
+    public function getValueDate()
+    {
         return $this->valueDate;
     }
 
     /**
      * @param \DateTime $valueDate
      */
-    public function setValueDate($valueDate) {
+    public function setValueDate($valueDate)
+    {
         $this->valueDate = $valueDate;
     }
 
     /**
      * @return string
      */
-    public function getReference() {
+    public function getReference()
+    {
         return $this->reference;
     }
 
     /**
      * @param string $reference
      */
-    public function setReference($reference) {
+    public function setReference($reference)
+    {
         $this->reference = $reference;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryName() {
+    public function getBeneficiaryName()
+    {
         return $this->beneficiaryName;
     }
 
     /**
      * @param string $beneficiaryName
      */
-    public function setBeneficiaryName($beneficiaryName) {
+    public function setBeneficiaryName($beneficiaryName)
+    {
         $this->beneficiaryName = $beneficiaryName;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryAddress1() {
+    public function getBeneficiaryAddress1()
+    {
         return $this->beneficiaryAddress1;
     }
 
     /**
      * @param string $beneficiaryAddress1
      */
-    public function setBeneficiaryAddress1($beneficiaryAddress1) {
+    public function setBeneficiaryAddress1($beneficiaryAddress1)
+    {
         $this->beneficiaryAddress1 = $beneficiaryAddress1;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryAddress2() {
+    public function getBeneficiaryAddress2()
+    {
         return $this->beneficiaryAddress2;
     }
 
     /**
      * @param string $beneficiaryAddress2
      */
-    public function setBeneficiaryAddress2($beneficiaryAddress2) {
+    public function setBeneficiaryAddress2($beneficiaryAddress2)
+    {
         $this->beneficiaryAddress2 = $beneficiaryAddress2;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryAddress3() {
+    public function getBeneficiaryAddress3()
+    {
         return $this->beneficiaryAddress3;
     }
 
     /**
      * @param string $beneficiaryAddress3
      */
-    public function setBeneficiaryAddress3($beneficiaryAddress3) {
+    public function setBeneficiaryAddress3($beneficiaryAddress3)
+    {
         $this->beneficiaryAddress3 = $beneficiaryAddress3;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryAccountNumber() {
+    public function getBeneficiaryAccountNumber()
+    {
         return $this->beneficiaryAccountNumber;
     }
 
     /**
      * @param string $beneficiaryAccountNumber
      */
-    public function setBeneficiaryAccountNumber($beneficiaryAccountNumber) {
+    public function setBeneficiaryAccountNumber($beneficiaryAccountNumber)
+    {
         $this->beneficiaryAccountNumber = $beneficiaryAccountNumber;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryBankName() {
+    public function getBeneficiaryBankName()
+    {
         return $this->beneficiaryBankName;
     }
 
     /**
      * @param string $beneficiaryBankName
      */
-    public function setBeneficiaryBankName($beneficiaryBankName) {
+    public function setBeneficiaryBankName($beneficiaryBankName)
+    {
         $this->beneficiaryBankName = $beneficiaryBankName;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryBankAddress1() {
+    public function getBeneficiaryBankAddress1()
+    {
         return $this->beneficiaryBankAddress1;
     }
 
     /**
      * @param string $beneficiaryBankAddress1
      */
-    public function setBeneficiaryBankAddress1($beneficiaryBankAddress1) {
+    public function setBeneficiaryBankAddress1($beneficiaryBankAddress1)
+    {
         $this->beneficiaryBankAddress1 = $beneficiaryBankAddress1;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryBankAddress2() {
+    public function getBeneficiaryBankAddress2()
+    {
         return $this->beneficiaryBankAddress2;
     }
 
     /**
      * @param string $beneficiaryBankAddress2
      */
-    public function setBeneficiaryBankAddress2($beneficiaryBankAddress2) {
+    public function setBeneficiaryBankAddress2($beneficiaryBankAddress2)
+    {
         $this->beneficiaryBankAddress2 = $beneficiaryBankAddress2;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryBankAddress3() {
+    public function getBeneficiaryBankAddress3()
+    {
         return $this->beneficiaryBankAddress3;
     }
 
     /**
      * @param string $beneficiaryBankAddress3
      */
-    public function setBeneficiaryBankAddress3($beneficiaryBankAddress3) {
+    public function setBeneficiaryBankAddress3($beneficiaryBankAddress3)
+    {
         $this->beneficiaryBankAddress3 = $beneficiaryBankAddress3;
     }
 
     /**
      * @return string
      */
-    public function getPurposeOfRemittance() {
+    public function getPurposeOfRemittance()
+    {
         return $this->purposeOfRemittance;
     }
 
     /**
      * @param string $purposeOfRemittance
      */
-    public function setPurposeOfRemittance($purposeOfRemittance) {
+    public function setPurposeOfRemittance($purposeOfRemittance)
+    {
         $this->purposeOfRemittance = $purposeOfRemittance;
     }
 
     /**
      * @return string
      */
-    public function getOverseasBankCharges() {
+    public function getOverseasBankCharges()
+    {
         return $this->overseasBankCharges;
     }
 
     /**
      * @param string $overseasBankCharges
      */
-    public function setOverseasBankCharges($overseasBankCharges) {
+    public function setOverseasBankCharges($overseasBankCharges)
+    {
         $this->overseasBankCharges = $overseasBankCharges;
     }
 
     /**
      * @return string
      */
-    public function getRemitterName() {
+    public function getRemitterName()
+    {
         return $this->remitterName;
     }
 
     /**
      * @param string $remitterName
      */
-    public function setRemitterName($remitterName) {
+    public function setRemitterName($remitterName)
+    {
         $this->remitterName = $remitterName;
     }
 
     /**
      * @return string
      */
-    public function getRefinanceDays() {
+    public function getRefinanceDays()
+    {
         return $this->refinanceDays;
     }
 
     /**
      * @param string $refinanceDays
      */
-    public function setRefinanceDays($refinanceDays) {
+    public function setRefinanceDays($refinanceDays)
+    {
         $this->refinanceDays = $refinanceDays;
     }
 
     /**
      * @return \DateTime
      */
-    public function getRefinanceDate() {
+    public function getRefinanceDate()
+    {
         return $this->refinanceDate;
     }
 
     /**
      * @param \DateTime $refinanceDate
      */
-    public function setRefinanceDate($refinanceDate) {
+    public function setRefinanceDate($refinanceDate)
+    {
         $this->refinanceDate = $refinanceDate;
     }
 
     /**
      * @return string
      */
-    public function getAdditionalBeneficiaryInstructions1() {
+    public function getAdditionalBeneficiaryInstructions1()
+    {
         return $this->additionalBeneficiaryInstructions1;
     }
 
     /**
      * @param string $additionalBeneficiaryInstructions1
      */
-    public function setAdditionalBeneficiaryInstructions1($additionalBeneficiaryInstructions1) {
+    public function setAdditionalBeneficiaryInstructions1($additionalBeneficiaryInstructions1)
+    {
         $this->additionalBeneficiaryInstructions1 = $additionalBeneficiaryInstructions1;
     }
 
     /**
      * @return string
      */
-    public function getAdditionalBeneficiaryInstructions2() {
+    public function getAdditionalBeneficiaryInstructions2()
+    {
         return $this->additionalBeneficiaryInstructions2;
     }
 
     /**
      * @param string $additionalBeneficiaryInstructions2
      */
-    public function setAdditionalBeneficiaryInstructions2($additionalBeneficiaryInstructions2) {
+    public function setAdditionalBeneficiaryInstructions2($additionalBeneficiaryInstructions2)
+    {
         $this->additionalBeneficiaryInstructions2 = $additionalBeneficiaryInstructions2;
     }
 
     /**
      * @return string
      */
-    public function getAdditionalBeneficiaryInstructions3() {
+    public function getAdditionalBeneficiaryInstructions3()
+    {
         return $this->additionalBeneficiaryInstructions3;
     }
 
     /**
      * @param string $additionalBeneficiaryInstructions3
      */
-    public function setAdditionalBeneficiaryInstructions3($additionalBeneficiaryInstructions3) {
+    public function setAdditionalBeneficiaryInstructions3($additionalBeneficiaryInstructions3)
+    {
         $this->additionalBeneficiaryInstructions3 = $additionalBeneficiaryInstructions3;
     }
 
     /**
      * @return string
      */
-    public function getAdditionalBeneficiaryInstructions4() {
+    public function getAdditionalBeneficiaryInstructions4()
+    {
         return $this->additionalBeneficiaryInstructions4;
     }
 
     /**
      * @param string $additionalBeneficiaryInstructions4
      */
-    public function setAdditionalBeneficiaryInstructions4($additionalBeneficiaryInstructions4) {
+    public function setAdditionalBeneficiaryInstructions4($additionalBeneficiaryInstructions4)
+    {
         $this->additionalBeneficiaryInstructions4 = $additionalBeneficiaryInstructions4;
     }
 
     /**
      * @return string
      */
-    public function getAdditionalInstructionsToNab() {
+    public function getAdditionalInstructionsToNab()
+    {
         return $this->additionalInstructionsToNab;
     }
 
     /**
      * @param string $additionalInstructionsToNab
      */
-    public function setAdditionalInstructionsToNab($additionalInstructionsToNab) {
+    public function setAdditionalInstructionsToNab($additionalInstructionsToNab)
+    {
         $this->additionalInstructionsToNab = $additionalInstructionsToNab;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryBankCountryCode() {
+    public function getBeneficiaryBankCountryCode()
+    {
         return $this->beneficiaryBankCountryCode;
     }
 
     /**
      * @param string $beneficiaryBankCountryCode
      */
-    public function setBeneficiaryBankCountryCode($beneficiaryBankCountryCode) {
+    public function setBeneficiaryBankCountryCode($beneficiaryBankCountryCode)
+    {
         $this->beneficiaryBankCountryCode = $beneficiaryBankCountryCode;
     }
 
     /**
      * @return string
      */
-    public function getBeneficiaryBicAddress() {
+    public function getBeneficiaryBicAddress()
+    {
         return $this->beneficiaryBicAddress;
     }
 
     /**
      * @param string $beneficiaryBicAddress
      */
-    public function setBeneficiaryBicAddress($beneficiaryBicAddress) {
+    public function setBeneficiaryBicAddress($beneficiaryBicAddress)
+    {
         $this->beneficiaryBicAddress = $beneficiaryBicAddress;
     }
 
     /**
      * @return string
      */
-    public function getRoutingType() {
+    public function getRoutingType()
+    {
         return $this->routingType;
     }
 
     /**
      * @param string $routingType
      */
-    public function setRoutingType($routingType) {
+    public function setRoutingType($routingType)
+    {
         $this->routingType = $routingType;
     }
 
     /**
      * @return string
      */
-    public function getRoutingCode() {
+    public function getRoutingCode()
+    {
         return $this->routingCode;
     }
 
     /**
      * @param string $routingCode
      */
-    public function setRoutingCode($routingCode) {
+    public function setRoutingCode($routingCode)
+    {
         $this->routingCode = $routingCode;
     }
 
     /**
      * @return string
      */
-    public function getOriginatingApplicantDetails1() {
+    public function getOriginatingApplicantDetails1()
+    {
         return $this->originatingApplicantDetails1;
     }
 
     /**
      * @param string $originatingApplicantDetails1
      */
-    public function setOriginatingApplicantDetails1($originatingApplicantDetails1) {
+    public function setOriginatingApplicantDetails1($originatingApplicantDetails1)
+    {
         $this->originatingApplicantDetails1 = $originatingApplicantDetails1;
     }
 
     /**
      * @return string
      */
-    public function getOriginatingApplicantDetails2() {
+    public function getOriginatingApplicantDetails2()
+    {
         return $this->originatingApplicantDetails2;
     }
 
     /**
      * @param string $originatingApplicantDetails2
      */
-    public function setOriginatingApplicantDetails2($originatingApplicantDetails2) {
+    public function setOriginatingApplicantDetails2($originatingApplicantDetails2)
+    {
         $this->originatingApplicantDetails2 = $originatingApplicantDetails2;
     }
 
     /**
      * @return string
      */
-    public function getOriginatingApplicantDetails3() {
+    public function getOriginatingApplicantDetails3()
+    {
         return $this->originatingApplicantDetails3;
     }
 
     /**
      * @param string $originatingApplicantDetails3
      */
-    public function setOriginatingApplicantDetails3($originatingApplicantDetails3) {
+    public function setOriginatingApplicantDetails3($originatingApplicantDetails3)
+    {
         $this->originatingApplicantDetails3 = $originatingApplicantDetails3;
     }
 
     /**
      * @return string
      */
-    public function getOriginatingApplicantDetails4() {
+    public function getOriginatingApplicantDetails4()
+    {
         return $this->originatingApplicantDetails4;
     }
 
     /**
      * @param string $originatingApplicantDetails4
      */
-    public function setOriginatingApplicantDetails4($originatingApplicantDetails4) {
+    public function setOriginatingApplicantDetails4($originatingApplicantDetails4)
+    {
         $this->originatingApplicantDetails4 = $originatingApplicantDetails4;
     }
 
     /**
      * @return string
      */
-    public function getNumberOfDetailRecords() {
+    public function getNumberOfDetailRecords()
+    {
         return $this->numberOfDetailRecords;
     }
 
     /**
      * @param string $numberOfDetailRecords
      */
-    public function setNumberOfDetailRecords($numberOfDetailRecords) {
+    public function setNumberOfDetailRecords($numberOfDetailRecords)
+    {
         $this->numberOfDetailRecords = $numberOfDetailRecords;
     }
 
     /**
      * @return array|PaymentDetailRecord
      */
-    public function getPaymentDetailRecords() {
+    public function getPaymentDetailRecords()
+    {
         return $this->paymentDetailRecords;
     }
 
     /**
      * @param array|PaymentDetailRecord $paymentDetailRecords
      */
-    public function setPaymentDetailRecords($paymentDetailRecords) {
+    public function setPaymentDetailRecords($paymentDetailRecords)
+    {
         if (!is_array($paymentDetailRecords)) {
             $paymentDetailRecords = array($paymentDetailRecords);
         }
