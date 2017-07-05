@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Generator;
 
 use Latysh\AbaBundle\Model\NabInt\HeaderRecord;
@@ -15,7 +16,6 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 
 class NabIntAbaFileGenerator
 {
-
     private $validator;
 
     private $abaString;
@@ -60,7 +60,7 @@ class NabIntAbaFileGenerator
             $errors = $this->validator->validate($paymentRecord);
 
             if (count($errors) > 0) {
-                throw new ValidatorException('Payment record error: '.(string)$errors);
+                throw new ValidatorException('Payment record error: '.(string) $errors);
             } else {
                 // Payment record
                 $this->addPaymentRecord($paymentRecord);
@@ -70,7 +70,7 @@ class NabIntAbaFileGenerator
                     $errors = $this->validator->validate($paymentDetailRecord);
 
                     if (count($errors) > 0) {
-                        throw new ValidatorException('Payment detail record error: '.(string)$errors);
+                        throw new ValidatorException('Payment detail record error: '.(string) $errors);
                     } else {
                         // Payment detail record
                         $this->addPaymentDetailRecord($paymentDetailRecord);
@@ -96,8 +96,8 @@ class NabIntAbaFileGenerator
 
     /**
      * Create the header record line of the file.
-     * @param HeaderRecord $headerRecord
      *
+     * @param HeaderRecord $headerRecord
      */
     private function addHeaderRecord(HeaderRecord $headerRecord)
     {
@@ -115,8 +115,8 @@ class NabIntAbaFileGenerator
 
     /**
      * Create the payment header line of the file.
-     * @param PaymentHeader $paymentHeader
      *
+     * @param PaymentHeader $paymentHeader
      */
     private function addPaymentHeader(PaymentHeader $paymentHeader)
     {
@@ -134,8 +134,8 @@ class NabIntAbaFileGenerator
 
     /**
      * Create the payment record line of the file.
-     * @param PaymentRecord $paymentRecord
      *
+     * @param PaymentRecord $paymentRecord
      */
     private function addPaymentRecord(PaymentRecord $paymentRecord)
     {
@@ -251,8 +251,8 @@ class NabIntAbaFileGenerator
 
     /**
      * Create the payment detail record line of the file.
-     * @param PaymentDetailRecord $paymentDetailRecord
      *
+     * @param PaymentDetailRecord $paymentDetailRecord
      */
     private function addPaymentDetailRecord(PaymentDetailRecord $paymentDetailRecord)
     {
@@ -316,8 +316,8 @@ class NabIntAbaFileGenerator
 
     /**
      * Create the payment trailer record line of the file.
-     * @param PaymentTrailerRecord $paymentTrailerRecord
      *
+     * @param PaymentTrailerRecord $paymentTrailerRecord
      */
     private function addPaymentTrailerRecord(PaymentTrailerRecord $paymentTrailerRecord)
     {
@@ -329,8 +329,8 @@ class NabIntAbaFileGenerator
 
     /**
      * Create the payment trailer line of the file.
-     * @param PaymentTrailer $paymentTrailer
      *
+     * @param PaymentTrailer $paymentTrailer
      */
     private function addPaymentTrailer(PaymentTrailer $paymentTrailer)
     {
@@ -342,8 +342,8 @@ class NabIntAbaFileGenerator
 
     /**
      * Create the file trailer record line of the file.
-     * @param FileTrailerRecord $fileTrailerRecord
      *
+     * @param FileTrailerRecord $fileTrailerRecord
      */
     private function addFileTrailerRecord(FileTrailerRecord $fileTrailerRecord)
     {
@@ -361,13 +361,14 @@ class NabIntAbaFileGenerator
 
     private function addLine($line, $crlf = true)
     {
-        $this->abaString .= $line.($crlf ? "\r\n" : "");
+        $this->abaString .= $line.($crlf ? "\r\n" : '');
     }
 
     /**
      * Number scale (decimal point) value depending on currency. Refer to documentation.
+     *
      * @param string $currency
-     * @param float $amount
+     * @param float  $amount
      *
      * @return string $format
      */

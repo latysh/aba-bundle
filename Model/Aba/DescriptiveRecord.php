@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Model\Aba;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class DescriptiveRecord
 {
     /**
-     * @var string $recordType
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = 0)
@@ -17,7 +18,7 @@ class DescriptiveRecord
     private $recordType;
 
     /**
-     * @var string $bsb
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -28,7 +29,7 @@ class DescriptiveRecord
     private $bsb;
 
     /**
-     * @var string $accountNumber
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -39,7 +40,7 @@ class DescriptiveRecord
     private $accountNumber;
 
     /**
-     * @var string $sequenceNumber
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -50,7 +51,7 @@ class DescriptiveRecord
     private $sequenceNumber;
 
     /**
-     * @var string $bankName
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -61,7 +62,7 @@ class DescriptiveRecord
     private $bankName;
 
     /**
-     * @var string $bankName
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -72,7 +73,7 @@ class DescriptiveRecord
     private $userName;
 
     /**
-     * @var string $bankName
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\d]{6}$/",
@@ -82,7 +83,7 @@ class DescriptiveRecord
     private $directEntryUserId;
 
     /**
-     * @var string $bankName
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\_?\^\[\],.+-;:=#\/\*\(\)&%!\$@]{0,12}$/",
@@ -92,7 +93,7 @@ class DescriptiveRecord
     private $description;
 
     /**
-     * @var \DateTime $processingDateTime
+     * @var \DateTime
      *
      * @Assert\NotBlank()
      * @Assert\DateTime()

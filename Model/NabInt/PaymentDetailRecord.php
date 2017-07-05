@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Model\NabInt;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class PaymentDetailRecord
 {
     /**
-     * @var string $indicator
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = 55)
@@ -18,7 +19,7 @@ class PaymentDetailRecord
     private $indicator;
 
     /**
-     * @var string $paymentMethod
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -29,7 +30,7 @@ class PaymentDetailRecord
     private $paymentMethod;
 
     /**
-     * @var string $paymentLegCurrencyCode
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Currency()
@@ -37,7 +38,7 @@ class PaymentDetailRecord
     private $paymentLegCurrencyCode;
 
     /**
-     * @var float $paymentLegAmount
+     * @var float
      *
      * @Assert\Type(
      *     type="numeric",
@@ -53,7 +54,7 @@ class PaymentDetailRecord
     private $paymentLegAmount;
 
     /**
-     * @var string $fxRate
+     * @var string
      *
      * @Assert\Type(
      *     type="numeric",
@@ -69,7 +70,7 @@ class PaymentDetailRecord
     private $fxRate;
 
     /**
-     * @var string $debitAccountBsb
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -80,7 +81,7 @@ class PaymentDetailRecord
     private $debitAccountBsb;
 
     /**
-     * @var string $debitAccountNumber
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w]{0,35}$/",
@@ -90,7 +91,7 @@ class PaymentDetailRecord
     private $debitAccountNumber;
 
     /**
-     * @var string $debitCurrencyCode
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Currency()
@@ -98,7 +99,7 @@ class PaymentDetailRecord
     private $debitCurrencyCode;
 
     /**
-     * @var float $debitAmount
+     * @var float
      *
      * @Assert\Type(
      *     type="numeric",
@@ -114,7 +115,7 @@ class PaymentDetailRecord
     private $debitAmount;
 
     /**
-     * @var string $refinanceIndicator
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -125,7 +126,7 @@ class PaymentDetailRecord
     private $refinanceIndicator;
 
     /**
-     * @var string $textToNabForPayAccount
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,60}$/",
@@ -135,7 +136,7 @@ class PaymentDetailRecord
     private $textToNabForPayAccount;
 
     /**
-     * @var string $fecNumber
+     * @var string
      *
      * @Assert\Type(
      *     type="integer",
@@ -151,7 +152,7 @@ class PaymentDetailRecord
     private $fecNumber;
 
     /**
-     * @var string $efxNumber
+     * @var string
      *
      * @Assert\Type(
      *     type="integer",

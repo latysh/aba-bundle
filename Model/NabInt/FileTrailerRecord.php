@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Model\NabInt;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class FileTrailerRecord
 {
     /**
-     * @var string $indicator
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = 99)
@@ -17,7 +18,7 @@ class FileTrailerRecord
     private $indicator;
 
     /**
-     * @var string $filename
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w]{0,20}$/",
@@ -27,13 +28,12 @@ class FileTrailerRecord
     private $filename;
 
     /**
-     * @var \DateTime $createdDate
+     * @var \DateTime
      *
      * @Assert\NotBlank()
      * @Assert\DateTime()
      */
     private $createdDate;
-
 
     public function __construct()
     {

@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Model\Aba;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class BatchControlRecord
 {
     /**
-     * @var string $recordType
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = 7)
@@ -17,7 +18,7 @@ class BatchControlRecord
     private $recordType;
 
     /**
-     * @var string $bsb
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -28,7 +29,7 @@ class BatchControlRecord
     private $bsb;
 
     /**
-     * @var integer $netTotal
+     * @var int
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -39,7 +40,7 @@ class BatchControlRecord
     private $netTotal;
 
     /**
-     * @var integer $creditTotal
+     * @var int
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -50,7 +51,7 @@ class BatchControlRecord
     private $creditTotal;
 
     /**
-     * @var integer $debitTotal
+     * @var int
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -61,7 +62,7 @@ class BatchControlRecord
     private $debitTotal;
 
     /**
-     * @var string $numberRecords
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -114,7 +115,7 @@ class BatchControlRecord
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getNetTotal()
     {
@@ -122,7 +123,7 @@ class BatchControlRecord
     }
 
     /**
-     * @param integer $netTotal
+     * @param int $netTotal
      */
     public function setNetTotal($netTotal)
     {
@@ -130,7 +131,7 @@ class BatchControlRecord
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getCreditTotal()
     {
@@ -138,7 +139,7 @@ class BatchControlRecord
     }
 
     /**
-     * @param integer $creditTotal
+     * @param int $creditTotal
      */
     public function setCreditTotal($creditTotal)
     {
@@ -146,7 +147,7 @@ class BatchControlRecord
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getDebitTotal()
     {
@@ -154,7 +155,7 @@ class BatchControlRecord
     }
 
     /**
-     * @param integer $debitTotal
+     * @param int $debitTotal
      */
     public function setDebitTotal($debitTotal)
     {

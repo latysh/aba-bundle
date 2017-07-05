@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Generator;
 
 use Latysh\AbaBundle\Model\Aba\DescriptiveRecord;
@@ -13,7 +14,6 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 
 class AbaFileGenerator
 {
-
     private $validator;
 
     private $abaString;
@@ -25,7 +25,7 @@ class AbaFileGenerator
     }
 
     /**
-     * @param array $params
+     * @param array                      $params
      * @param array|TransactionInterface $detailRecords
      *
      * @return string
@@ -46,7 +46,7 @@ class AbaFileGenerator
         $errors = $this->validator->validate($descriptiveRecord);
 
         if (count($errors) > 0) {
-            throw new ValidatorException('Descriptive record error: '.(string)$errors);
+            throw new ValidatorException('Descriptive record error: '.(string) $errors);
         } else {
             $this->addDescriptiveRecord($descriptiveRecord);
         }
@@ -60,7 +60,7 @@ class AbaFileGenerator
             $errors = $this->validator->validate($detailRecord);
 
             if (count($errors) > 0) {
-                throw new ValidatorException('Detail record error: '.(string)$errors);
+                throw new ValidatorException('Detail record error: '.(string) $errors);
             } else {
                 $this->addDetailRecord($detailRecord, $descriptiveRecord);
                 if ($detailRecord->getTransactionCode() === TransactionCode::EXTERNALLY_INITIATED_DEBIT) {
@@ -83,9 +83,8 @@ class AbaFileGenerator
 
     /**
      * Create the descriptive record line of the file.
+     *
      * @param DescriptiveRecord $descriptiveRecord
-     *
-     *
      */
     private function addDescriptiveRecord(DescriptiveRecord $descriptiveRecord)
     {
@@ -135,7 +134,7 @@ class AbaFileGenerator
      * Add a detail record for each transaction.
      *
      * @param array|DetailRecord $detailRecord
-     * @param DescriptiveRecord $descriptiveRecord
+     * @param DescriptiveRecord  $descriptiveRecord
      */
     private function addDetailRecord(DetailRecord $detailRecord, DescriptiveRecord $descriptiveRecord)
     {
@@ -222,6 +221,6 @@ class AbaFileGenerator
 
     private function addLine($line, $crlf = true)
     {
-        $this->abaString .= $line.($crlf ? "\r\n" : "");
+        $this->abaString .= $line.($crlf ? "\r\n" : '');
     }
 }

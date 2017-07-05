@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Model\Aba;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class DetailRecord implements TransactionInterface
 {
     /**
-     * @var string $recordType
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = 1)
@@ -18,7 +19,7 @@ class DetailRecord implements TransactionInterface
     private $recordType;
 
     /**
-     * @var string $bsb
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -29,7 +30,7 @@ class DetailRecord implements TransactionInterface
     private $bsb;
 
     /**
-     * @var string $accountNumber
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -40,7 +41,7 @@ class DetailRecord implements TransactionInterface
     private $accountNumber;
 
     /**
-     * @var string $indicator
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^N|T|W|X|Y| /",
@@ -50,7 +51,7 @@ class DetailRecord implements TransactionInterface
     private $indicator;
 
     /**
-     * @var string $transactionCode
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Choice(callback = "getTransactionCodes")
@@ -58,7 +59,7 @@ class DetailRecord implements TransactionInterface
     private $transactionCode;
 
     /**
-     * @var integer $amount
+     * @var int
      *
      * @Assert\NotBlank()
      * @Assert\Type(
@@ -70,7 +71,7 @@ class DetailRecord implements TransactionInterface
     private $amount;
 
     /**
-     * @var string $accountName
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -81,7 +82,7 @@ class DetailRecord implements TransactionInterface
     private $accountName;
 
     /**
-     * @var string $reference
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -92,7 +93,7 @@ class DetailRecord implements TransactionInterface
     private $reference;
 
     /**
-     * @var string $remitter
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\_?\^\[\],.+-;:=#\/\*\(\)&%!\$@]{0,16}$/",
@@ -102,7 +103,7 @@ class DetailRecord implements TransactionInterface
     private $remitter;
 
     /**
-     * @var integer $taxWithholding
+     * @var int
      *
      * @Assert\Type(
      *     type="integer",
@@ -230,7 +231,7 @@ class DetailRecord implements TransactionInterface
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getAmount()
     {
@@ -238,7 +239,7 @@ class DetailRecord implements TransactionInterface
     }
 
     /**
-     * @param integer $amount
+     * @param int $amount
      */
     public function setAmount($amount)
     {
@@ -294,7 +295,7 @@ class DetailRecord implements TransactionInterface
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getTaxWithholding()
     {
@@ -302,7 +303,7 @@ class DetailRecord implements TransactionInterface
     }
 
     /**
-     * @param integer $taxWithholding
+     * @param int $taxWithholding
      */
     public function setTaxWithholding($taxWithholding)
     {

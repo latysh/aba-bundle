@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Model\NabInt;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class PaymentRecord
 {
     /**
-     * @var string $indicator
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = 03)
@@ -18,7 +19,7 @@ class PaymentRecord
     private $indicator;
 
     /**
-     * @var string $payCurrencyCode
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Currency()
@@ -26,7 +27,7 @@ class PaymentRecord
     private $payCurrencyCode;
 
     /**
-     * @var float $paymentAmount
+     * @var float
      *
      * @Assert\Type(
      *     type="numeric",
@@ -42,7 +43,7 @@ class PaymentRecord
     private $paymentAmount;
 
     /**
-     * @var \DateTime $valueDate
+     * @var \DateTime
      *
      * @Assert\NotBlank()
      * @Assert\DateTime()
@@ -50,7 +51,7 @@ class PaymentRecord
     private $valueDate;
 
     /**
-     * @var string $reference
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,16}$/",
@@ -60,7 +61,7 @@ class PaymentRecord
     private $reference;
 
     /**
-     * @var string $beneficiaryName
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -71,7 +72,7 @@ class PaymentRecord
     private $beneficiaryName;
 
     /**
-     * @var string $beneficiaryAddress1
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -82,7 +83,7 @@ class PaymentRecord
     private $beneficiaryAddress1;
 
     /**
-     * @var string $beneficiaryAddress2
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -92,7 +93,7 @@ class PaymentRecord
     private $beneficiaryAddress2;
 
     /**
-     * @var string $beneficiaryAddress3
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^(.*?[A-Z]){2,}/",
@@ -107,7 +108,7 @@ class PaymentRecord
     private $beneficiaryAddress3;
 
     /**
-     * @var string $beneficiaryAccountNumber
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -118,7 +119,7 @@ class PaymentRecord
     private $beneficiaryAccountNumber;
 
     /**
-     * @var string $beneficiaryBankName
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -128,7 +129,7 @@ class PaymentRecord
     private $beneficiaryBankName;
 
     /**
-     * @var string $beneficiaryBankAddress1
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -138,7 +139,7 @@ class PaymentRecord
     private $beneficiaryBankAddress1;
 
     /**
-     * @var string $beneficiaryBankAddress2
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -148,7 +149,7 @@ class PaymentRecord
     private $beneficiaryBankAddress2;
 
     /**
-     * @var string $beneficiaryBankAddress3
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^(.*?[A-Z]){2,}",
@@ -165,7 +166,7 @@ class PaymentRecord
     private $beneficiaryBankAddress3;
 
     /**
-     * @var string $purposeOfRemittance
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,3}$/",
@@ -175,7 +176,7 @@ class PaymentRecord
     private $purposeOfRemittance;
 
     /**
-     * @var string $overseasBankCharges
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^(B|R)$/",
@@ -185,7 +186,7 @@ class PaymentRecord
     private $overseasBankCharges;
 
     /**
-     * @var string $remitterName
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s]{0,35}$/",
@@ -195,7 +196,7 @@ class PaymentRecord
     private $remitterName;
 
     /**
-     * @var string $refinanceDays
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\d]{3}$/",
@@ -211,14 +212,14 @@ class PaymentRecord
     private $refinanceDays;
 
     /**
-     * @var \DateTime $refinanceDate
+     * @var \DateTime
      *
      * @Assert\DateTime()
      */
     private $refinanceDate;
 
     /**
-     * @var string $additionalBeneficiaryInstructions1
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -228,7 +229,7 @@ class PaymentRecord
     private $additionalBeneficiaryInstructions1;
 
     /**
-     * @var string $additionalBeneficiaryInstructions2
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -238,7 +239,7 @@ class PaymentRecord
     private $additionalBeneficiaryInstructions2;
 
     /**
-     * @var string $additionalBeneficiaryInstructions3
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -248,7 +249,7 @@ class PaymentRecord
     private $additionalBeneficiaryInstructions3;
 
     /**
-     * @var string $additionalBeneficiaryInstructions4
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -258,7 +259,7 @@ class PaymentRecord
     private $additionalBeneficiaryInstructions4;
 
     /**
-     * @var string $additionalInstructionsToNab
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -268,7 +269,7 @@ class PaymentRecord
     private $additionalInstructionsToNab;
 
     /**
-     * @var string $beneficiaryBankCountryCode
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[A-Z]{0,2}$/",
@@ -278,7 +279,7 @@ class PaymentRecord
     private $beneficiaryBankCountryCode;
 
     /**
-     * @var string $beneficiaryBicAddress
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,11}$/",
@@ -288,7 +289,7 @@ class PaymentRecord
     private $beneficiaryBicAddress;
 
     /**
-     * @var string $routingType
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^(FW|SC|CH)$/",
@@ -298,7 +299,7 @@ class PaymentRecord
     private $routingType;
 
     /**
-     * @var string $routingCode
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w]{0,2}$/",
@@ -308,7 +309,7 @@ class PaymentRecord
     private $routingCode;
 
     /**
-     * @var string $originatingApplicantDetails1
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -318,7 +319,7 @@ class PaymentRecord
     private $originatingApplicantDetails1;
 
     /**
-     * @var string $originatingApplicantDetails2
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -328,7 +329,7 @@ class PaymentRecord
     private $originatingApplicantDetails2;
 
     /**
-     * @var string $originatingApplicantDetails3
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -338,7 +339,7 @@ class PaymentRecord
     private $originatingApplicantDetails3;
 
     /**
-     * @var string $originatingApplicantDetails4
+     * @var string
      *
      * @Assert\Regex(
      *     pattern = "/^[\w\s\(\)\_?.,+-]{0,35}$/",
@@ -348,7 +349,7 @@ class PaymentRecord
     private $originatingApplicantDetails4;
 
     /**
-     * @var string $numberOfDetailRecords
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -359,7 +360,7 @@ class PaymentRecord
     private $numberOfDetailRecords;
 
     /**
-     * @var array|PaymentDetailRecord $paymentDetailRecords
+     * @var array|PaymentDetailRecord
      * @Assert\NotBlank()
      */
     private $paymentDetailRecords;

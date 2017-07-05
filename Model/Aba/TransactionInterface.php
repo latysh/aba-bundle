@@ -29,7 +29,7 @@ interface TransactionInterface
     public function getAccountNumber();
 
     /**
-     * Return the bank's BSB for this account. Format is xxx-xxx
+     * Return the bank's BSB for this account. Format is xxx-xxx.
      *
      * @return string
      */
@@ -38,7 +38,7 @@ interface TransactionInterface
     /**
      * Return the transaction amount in cents.
      *
-     * @return integer
+     * @return int
      */
     public function getAmount();
 
@@ -79,7 +79,7 @@ interface TransactionInterface
     /**
      * Amount of tax withholding. Return zero if not withholding any amount.
      *
-     * @return integer
+     * @return int
      */
     public function getTaxWithholding();
 }

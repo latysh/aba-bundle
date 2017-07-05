@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Model\NabInt;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class PaymentHeader
 {
     /**
-     * @var string $indicator
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = 02)
@@ -17,7 +18,7 @@ class PaymentHeader
     private $indicator;
 
     /**
-     * @var string $messageType
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = 'IFT')
@@ -25,7 +26,7 @@ class PaymentHeader
     private $messageType;
 
     /**
-     * @var string $numberPayments
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = '0001')

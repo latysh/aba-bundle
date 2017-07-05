@@ -1,7 +1,8 @@
 <?php
 /**
- * Author: Latysh (Altynbek Usenov)
+ * Author: Latysh (Altynbek Usenov).
  */
+
 namespace Latysh\AbaBundle\Model\NabInt;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class HeaderRecord
 {
     /**
-     * @var string $indicator
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\EqualTo(value = 01)
@@ -17,14 +18,14 @@ class HeaderRecord
     private $indicator;
 
     /**
-     * @var string $fileName
+     * @var string
      *
      * @Assert\Blank()
      */
     private $fileName;
 
     /**
-     * @var string $numberMessages
+     * @var string
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
